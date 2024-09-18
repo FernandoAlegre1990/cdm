@@ -33,7 +33,12 @@ const slides = [
   {
     title: 'Visita nuestra tienda online',
     description: 'Comprar camisetas y otros productos de Morón de la marca Athletic',
+    
     image: camisetas,
+    link: {
+      text: 'Ir a la tienda',
+      url: 'https://tienda.athleticargentina.com.ar/'
+    }
   }
 ];
 
@@ -48,25 +53,20 @@ const Hero = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const { title, description, image } = slides[currentSlide];
+  const { title, description, image, link } = slides[currentSlide];
 
   return (
     <main className="bg-white dark:bg-gray-800 relative overflow-hidden">
       <header className="h-24 sm:h-32 flex items-center z-30 w-full bg-red-600">
         <div className="container mx-auto px-6 flex items-center justify-between">
-          <img
-            src={logo}
-            alt="Logo"
-            className="h-12 sm:h-16"
-          />
-         <p className='font-sen text-white uppercase text-lg lg:flex'>BIENVENIDO A LA PÁGINA DE CLUB DEPORTIVO MORON</p>
+          <img src={logo} alt="Logo" className="h-12 sm:h-16" />
+          <p className='font-sen text-white uppercase text-lg lg:flex'>BIENVENIDO A LA PÁGINA DE CLUB DEPORTIVO MORON</p>
           <nav className="font-sen text-white uppercase text-lg lg:flex items-center hidden">
             <a href="/" className="py-2 px-6 flex hover:bg-red-700">Home</a>
             <a href="#equipo" className="py-2 px-6 flex hover:bg-red-700">Equipo</a>
             <a href="#resultados-puntos" className="py-2 px-6 flex hover:bg-red-700">Resultados</a>
             <a href="#asociate" className="py-2 px-6 flex hover:bg-red-700">Asociate</a> {/* Enlace ajustado */}
             <a href="#contacto" className="py-2 px-6 flex hover:bg-red-700">Contacto</a> {/* Enlace ajustado */}
-
           </nav>
         </div>
       </header>
@@ -86,16 +86,22 @@ const Hero = () => {
                   ></span>
                 ))}
               </div>
-              <img
-                src={image}
-                alt="Slide"
-                className="w-full h-auto object-cover rounded-lg shadow-lg"
-              />
+              <img src={image} alt="Slide" className="w-full h-auto object-cover rounded-lg shadow-lg" />
             </div>
             {/* Slide Content */}
             <div className="w-full lg:w-1/2 p-12 flex flex-col justify-center bg-red-50">
               <h1 className="text-4xl font-bold text-red-600 mb-4">{title}</h1>
               <p className="text-lg text-gray-800 whitespace-pre-line">{description}</p>
+              {link && (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-red-600 hover:underline mt-4"
+                >
+                  {link.text}
+                </a>
+              )}
             </div>
           </div>
 
